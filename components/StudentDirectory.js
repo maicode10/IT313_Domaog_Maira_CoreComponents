@@ -10,22 +10,23 @@ const starterStudents = [
   { id: 's5', name: 'Eli Tan', year: '3rd Year', photoUrl: 'https://i.pravatar.cc/100?img=5', flagged: false },
 ];
 
-export default function StudentDirectory(){
-    const [students, setStudents] = useState(starterStudents);
-    const [query, setQuery] = useState('');
-}
+export default function StudentDirectory() {
+  const [students, setStudents] = useState(starterStudents);
+  const [query, setQuery] = useState('');
 
-function toggleFlag(id){
+  function toggleFlag(id) {
     setStudents(
-        students.map((student)=>
-        student.id === id? { ...student, flagged: !student.flagged } : student)
-    )
+      students.map((student) =>
+        student.id === id ? { ...student, flagged: !student.flagged } : student
+      )
+    );
+  }
 
- const visibleStudents = students.filter((student) =>
+  const visibleStudents = students.filter((student) =>
     student.name.toLowerCase().includes(query.toLowerCase())
   );
 
-    return (
+  return (
     <View style={styles.container}>
       <Text style={styles.title}>Student Directory</Text>
       <Text style={styles.subtitle}>{students.length} students this term</Text>
@@ -37,7 +38,7 @@ function toggleFlag(id){
         onChangeText={setQuery}
       />
 
-<ScrollView>
+      <ScrollView>
         {visibleStudents.map((student) => (
           <StudentCard
             key={student.id}
